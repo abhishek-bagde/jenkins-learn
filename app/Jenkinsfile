@@ -1,6 +1,7 @@
 pipeline {
     agent any
-
+    }
+    
     environment {
         ARM_CLIENT_ID     = credentials('jenkins-arm-client-id')
         ARM_CLIENT_SECRET = credentials('jenkins-arm-secret-secret')
