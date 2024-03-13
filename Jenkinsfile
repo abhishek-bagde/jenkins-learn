@@ -32,11 +32,16 @@ pipeline {
             }
         }
 
-        stage("Deploy to AKS"){
-            withKubeConfig([credentialsId: '', serverUrl: 'dns-aks-ea-dev-southindia-001-x20ppipv.hcp.southindia.azmk8s.io']) 
+        stage('Deploy to kubernets'){
             steps{
-                sh 'kubectl apply -f deployment.yaml'
-                sh 'kubectl apply -f load-balancer-service.yaml'
+                script{
+                    dir('Kubernetes') {
+                        withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: '', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+                                sh 'kubectl apply -f deployment.yml'
+                                sh 'kubectl apply -f service.yml'
+                           }
+                        }   
+                }
             }
         }
     }
