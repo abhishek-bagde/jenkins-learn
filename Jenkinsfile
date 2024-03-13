@@ -33,7 +33,8 @@ pipeline {
         }
 
         stage("Deploy to AKS"){
-            withKubeConfig([credentialsId: '', serverUrl: 'dns-aks-ea-dev-southindia-001-x20ppipv.hcp.southindia.azmk8s.io']){
+            withKubeConfig([credentialsId: '', serverUrl: 'dns-aks-ea-dev-southindia-001-x20ppipv.hcp.southindia.azmk8s.io']) 
+            steps{
                 sh 'kubectl apply -f deployment.yaml'
                 sh 'kubectl apply -f load-balancer-service.yaml'
             }
