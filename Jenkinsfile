@@ -1,10 +1,10 @@
 pipeline {
     agent any
     
-    triggers {
-        // Trigger the pipeline on every push to the main branch
-        scm '*/main'
-    }
+    // triggers {
+    //     // Trigger the pipeline on every push to the main branch
+    //     scm '*/main'
+    // }
 
     environment {
         ARM_CLIENT_ID     = credentials('ARM_CLIENT_ID')
