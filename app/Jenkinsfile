@@ -14,12 +14,18 @@ pipeline {
             steps{
                 script{
                    {   
-                       sh "docker build -t hellodocker ."
-                       sh "docker tag netflix nasi101/netflix:latest "
-                       sh "docker push nasi101/netflix:latest "
+                       sh 'docker build -t hellodocker:${BUILD_ID} .'
+                    //    sh 'docker login creadevsouthindia001.azurecr.io -u abhishekbagde -p $ACR_PASSWORD'
+                    //    sh 'docker push myacr.azurecr.io/myimage:${BUILD_ID}'
                     }
                 }
             }
         }
+    }
+    // post {
+    //     always {
+    //         // Remove the Docker image from the Jenkins agent
+    //         sh 'docker rmi myimage:${BUILD_ID}'
+    //     }
     }
 }
