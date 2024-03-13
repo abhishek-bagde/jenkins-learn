@@ -23,7 +23,7 @@ pipeline {
             steps{
                     sh 'docker build -t hellodocker:${BUILD_ID} .'
                     sh 'docker login creadevsouthindia001.azurecr.io -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET'
-                    sh 'docker push myacr.azurecr.io/myimage:${BUILD_ID}'
+                    sh 'docker push creadevsouthindia001.azurecr.io/hellodocker:${BUILD_ID}'
                 }
             }
     }
