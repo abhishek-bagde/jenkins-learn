@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd-deployment
+  labels:
+    app: httpd-deployment
+spec:
+  template:
+    metadata:
+      name: httpd-pod
+      labels:
+        app: httpd-pod
+    spec:
+      containers:
+      - name: httpd-container
+        image: docker.io/library/httpd:latest
+        ports:
+          - containerPort: 80
+  replicas: 4
+  selector:
+    matchLabels:
+      app: httpd-pod
+
+# kubectl create deployment httpd-frontend --replicas=3 --image httpd:2.4-alpine --dry-run=client -o yaml > httpd.yaml
