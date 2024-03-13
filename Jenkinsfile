@@ -34,6 +34,7 @@ pipeline {
 
         stage("Deploy to AKS"){
             steps{
+                sh 'az aks get-credentials --resource-group rg-ea-dev-southindia-001 --name aks-ea-dev-southindia-001 --overwrite-existing'
                 sh 'kubectl apply -f deployment.yaml'
                 sh 'kubectl apply -f load-balancer-service.yaml'
             }
