@@ -28,8 +28,3 @@ pipeline {
             }
     }
 }
-    // post {
-    //     always {
-    //         // Remove the Docker image from the Jenkins agent
-    //         sh 'docker rmi myimage:${BUILD_ID}'
-    //     }

@@ -42,3 +42,7 @@ variable "password" {
 variable "acr_name" {
   type = string
 }
+
+variable "aks_name" {
+  type = string
+}
