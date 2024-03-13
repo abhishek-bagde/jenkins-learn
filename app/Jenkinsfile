@@ -1,20 +1,25 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
-            steps {
-                sh 'docker build -t hellodocker:${env.BUILD_ID} .'
+        stage('Clean Workspace') {
+            steps{
+                cleanWs()
+            },
+        stage('Checkout from Git'){
+            steps{
+                git branch: 'main', url: 'https://github.com/abhishek-bagde/jenkins-learn.git'
+            }
+        },    
+        stage("Docker Build & Push"){
+            steps{
+                script{
+                   {   
+                       sh "docker build -t hellodocker ."
+                       sh "docker tag netflix nasi101/netflix:latest "
+                       sh "docker push nasi101/netflix:latest "
+                    }
+                }
             }
         }
     }
 }
-// pipeline {
-//     agent any
-//     stages {
-//         stage('Hello') {
-//             steps {
-//                 echo 'Hello World'
-//             }
-//         }
-//     }
-// }

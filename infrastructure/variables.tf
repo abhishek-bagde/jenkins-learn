@@ -38,3 +38,7 @@ variable "username" {
 variable "password" {
   type = string
 }
+
+variable "acr_name" {
+  type = string
+}
