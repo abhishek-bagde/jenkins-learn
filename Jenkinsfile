@@ -35,10 +35,12 @@ pipeline {
         stage('Deploy to kubernets'){
             steps{
                 script{
+                    dir('') {
                     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: '', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
                         sh 'kubectl apply -f deployment.yaml'
                         sh 'kubectl apply -f service.yaml'
-                    }                       
+                    }                  
+                    }     
                 }
             }
         }
